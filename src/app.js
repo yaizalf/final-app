@@ -11,11 +11,31 @@ let weekDays = [
   "Thursday",
   "Friday",
   "Saturday",
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
 ];
 let day = weekDays[now.getDay()];
+let daythree = weekDays[now.getDay() + 2];
+let dayfour = weekDays[now.getDay() + 3];
+let dayfive = weekDays[now.getDay() + 4];
+let daysix = weekDays[now.getDay() + 5];
 
 let todayDate = document.querySelector("#today");
 todayDate.innerHTML = `${day}, ${hours}:${minutes}`;
+
+let day3 = document.querySelector("#day-3");
+day3.innerHTML = `${daythree}`;
+let day4 = document.querySelector("#day-4");
+day4.innerHTML = `${dayfour}`;
+let day5 = document.querySelector("#day-5");
+day5.innerHTML = `${dayfive}`;
+let day6 = document.querySelector("#day-6");
+day6.innerHTML = `${daysix}`;
 
 // Search engine city & temp change
 function newCity(event) {
