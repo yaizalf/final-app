@@ -29,13 +29,35 @@ function newCity(event) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${userCity.value}&units=metric`;
 
   function newTemperature(response) {
+  function newData(response) {
     let temperature = Math.round(response.data.main.temp);
     console.log(temperature);
 
     let newTemp = document.querySelector("#temperature");
     newTemp.innerHTML = `${temperature}º`;
+
+    let humidity = document.querySelector("#humidity");
+    humidity.innerHTML = `${response.data.main.humidity}%`;
+
+    let description = document.querySelector("#description");
+    description.innerHTML = `${response.data.weather[0].description}`;
+    console.log(response);
+
+    let windSpeed = document.querySelector("#wind");
+    windSpeed.innerHTML = `${response.data.wind.speed} m/s`;
+
+    let max_temp = Math.round(response.data.main.temp_max);
+    let max = document.querySelector("#max");
+    max.innerHTML = `↑${max_temp}`;
+    let min_temp = Math.round(response.data.main.temp_min);
+    let min = document.querySelector("#min");
+    min.innerHTML = `↓${min_temp}`;
+
+    //let icon = document.querySelector("#big-emoji");
+    //icon.innerHTML = `${response.data.weather[0].icon}`;
   }
   axios.get(`${apiUrl}&appid=${apiKey}`).then(newTemperature);
+  axios.get(`${apiUrl}&appid=${apiKey}`).then(newData);
 }
 let searchButton = document.querySelector("#go-button");
 searchButton.addEventListener("click", newCity);
@@ -47,12 +69,30 @@ function changeData(response) {
   let temp = Math.round(response.data.main.temp);
   let currentTemperature = document.querySelector("#temperature");
   currentTemperature.innerHTML = `${temp}º`;
+  let humidity = document.querySelector("#humidity");
+  humidity.innerHTML = `${response.data.main.humidity}%`;
+
+  let description = document.querySelector("#description");
+  description.innerHTML = `${response.data.weather[0].description}`;
+  console.log(response);
+
+  let windSpeed = document.querySelector("#wind");
+  windSpeed.innerHTML = `${response.data.wind.speed} m/s`;
+
+  let max_temp = Math.round(response.data.main.temp_max);
+  let max = document.querySelector("#max");
+  max.innerHTML = `↑${max_temp}`;
+  let min_temp = Math.round(response.data.main.temp_min);
+  let min = document.querySelector("#min");
+  min.innerHTML = `↓${min_temp}`;
 }
+
 function retrievePosition(position) {
   let apiKey = "940c8ed5f2cc9111c0cd74ba210060b2";
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
   let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+  let url = `https://api.c.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
   axios.get(url).then(changeData);
 }
 
