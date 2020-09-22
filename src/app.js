@@ -53,6 +53,7 @@ function newCity(event) {
 
   let apiKey = "940c8ed5f2cc9111c0cd74ba210060b2";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${userCity.value}&units=metric`;
+  let apiUrlForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${userCity.value}&units=metric`;
 
   function newData(response) {
     let temperature = Math.round(response.data.main.temp);
@@ -65,7 +66,6 @@ function newCity(event) {
 
     let description = document.querySelector("#description");
     description.innerHTML = `${response.data.weather[0].description}`;
-    console.log(response);
 
     let windSpeed = document.querySelector("#wind");
     windSpeed.innerHTML = `${response.data.wind.speed} m/s`;
@@ -80,7 +80,59 @@ function newCity(event) {
     //let icon = document.querySelector("#big-emoji");
     //icon.innerHTML = `${response.data.weather[0].icon}`;
   }
+  function ForecastData(response) {
+    //Today
+    let temperatureMaxToday = Math.round(response.data.list[0].main.temp_max);
+    let maxToday = document.querySelector("#forecast-max-today");
+    maxToday.innerHTML = `↑${temperatureMaxToday}º`;
+    let temperatureMinToday = Math.round(response.data.list[0].main.feels_like);
+    let minToday = document.querySelector("#forecast-min-today");
+    minToday.innerHTML = `↓${temperatureMinToday}º`;
+    //Tomorrow
+    let temperatureMaxTomorrow = Math.round(
+      response.data.list[8].main.temp_max
+    );
+    let maxTomorrow = document.querySelector("#max-tomorrow");
+    maxTomorrow.innerHTML = `↑${temperatureMaxTomorrow}º`;
+
+    let temperatureMinTomorrow = Math.round(
+      response.data.list[8].main.feels_like
+    );
+    let minTomorrow = document.querySelector("#min-tomorrow");
+    minTomorrow.innerHTML = `↓${temperatureMinTomorrow}º`;
+
+    // Day 3
+    let temperatureMaxDay3 = Math.round(response.data.list[16].main.temp_max);
+    let maxDay3 = document.querySelector("#max-day-3");
+    maxDay3.innerHTML = `↑${temperatureMaxDay3}º`;
+    let temperatureMinDay3 = Math.round(response.data.list[16].main.feels_like);
+    let minDay3 = document.querySelector("#min-day-3");
+    minDay3.innerHTML = `↓${temperatureMinDay3}º`;
+
+    //Day 4
+    let temperatureMaxDay4 = Math.round(response.data.list[24].main.temp_max);
+    let maxDay4 = document.querySelector("#max-day-4");
+    maxDay4.innerHTML = `↑${temperatureMaxDay4}º`;
+    let temperatureMinDay4 = Math.round(response.data.list[24].main.feels_like);
+    let minDay4 = document.querySelector("#min-day-4");
+    minDay4.innerHTML = `↓${temperatureMinDay4}º`;
+    //Day 5
+    let temperatureMaxDay5 = Math.round(response.data.list[32].main.temp_max);
+    let maxDay5 = document.querySelector("#max-day-5");
+    maxDay5.innerHTML = `↑${temperatureMaxDay5}º`;
+    let temperatureMinDay5 = Math.round(response.data.list[32].main.feels_like);
+    let minDay5 = document.querySelector("#min-day-5");
+    minDay5.innerHTML = `↓${temperatureMinDay5}º`;
+    //Day 6
+    let temperatureMaxDay6 = Math.round(response.data.list[39].main.temp_max);
+    let maxDay6 = document.querySelector("#max-day-6");
+    maxDay6.innerHTML = `↑${temperatureMaxDay6}º`;
+    let temperatureMinDay6 = Math.round(response.data.list[39].main.feels_like);
+    let minDay6 = document.querySelector("#min-day-6");
+    minDay6.innerHTML = `↓${temperatureMinDay6}º`;
+  }
   axios.get(`${apiUrl}&appid=${apiKey}`).then(newData);
+  axios.get(`${apiUrlForecast}&appid=${apiKey}`).then(ForecastData);
 }
 let searchButton = document.querySelector("#go-button");
 searchButton.addEventListener("click", newCity);
