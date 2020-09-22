@@ -58,3 +58,22 @@ function retrievePosition(position) {
 
 navigator.geolocation.getCurrentPosition(retrievePosition);
 
+// Celsius - Fahrenheit - IT WILL HAVE TO CHANGE!
+let cels = 16;
+let fahr = 60;
+
+function celsTemp(event) {
+  event.preventDefault();
+  let h2 = document.querySelector("#temperature");
+  h2.innerHTML = `${cels}º`;
+}
+let celsiusLink = document.querySelector("#cels-link");
+celsiusLink.addEventListener("click", celsTemp);
+
+function fahrTemp(event) {
+  event.preventDefault();
+  let h2 = document.querySelector("#temperature");
+  h2.innerHTML = `${fahr}º`;
+}
+let fahrenheitLink = document.querySelector("#fahr-link");
+fahrenheitLink.addEventListener("click", fahrTemp);
