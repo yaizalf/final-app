@@ -161,13 +161,63 @@ function changeData(response) {
   let min = document.querySelector("#min");
   min.innerHTML = `↓${min_temp}`;
 }
+function ForecastData(response) {
+  //Today
+  let temperatureMaxToday = Math.round(response.data.list[0].main.temp_max);
+  let maxToday = document.querySelector("#forecast-max-today");
+  maxToday.innerHTML = `↑${temperatureMaxToday}º`;
+  let temperatureMinToday = Math.round(response.data.list[0].main.feels_like);
+  let minToday = document.querySelector("#forecast-min-today");
+  minToday.innerHTML = `↓${temperatureMinToday}º`;
+  //Tomorrow
+  let temperatureMaxTomorrow = Math.round(response.data.list[8].main.temp_max);
+  let maxTomorrow = document.querySelector("#max-tomorrow");
+  maxTomorrow.innerHTML = `↑${temperatureMaxTomorrow}º`;
+
+  let temperatureMinTomorrow = Math.round(
+    response.data.list[8].main.feels_like
+  );
+  let minTomorrow = document.querySelector("#min-tomorrow");
+  minTomorrow.innerHTML = `↓${temperatureMinTomorrow}º`;
+  // Day 3
+  let temperatureMaxDay3 = Math.round(response.data.list[16].main.temp_max);
+  let maxDay3 = document.querySelector("#max-day-3");
+  maxDay3.innerHTML = `↑${temperatureMaxDay3}º`;
+  let temperatureMinDay3 = Math.round(response.data.list[16].main.feels_like);
+  let minDay3 = document.querySelector("#min-day-3");
+  minDay3.innerHTML = `↓${temperatureMinDay3}º`;
+
+  //Day 4
+  let temperatureMaxDay4 = Math.round(response.data.list[24].main.temp_max);
+  let maxDay4 = document.querySelector("#max-day-4");
+  maxDay4.innerHTML = `↑${temperatureMaxDay4}º`;
+  let temperatureMinDay4 = Math.round(response.data.list[24].main.feels_like);
+  let minDay4 = document.querySelector("#min-day-4");
+  minDay4.innerHTML = `↓${temperatureMinDay4}º`;
+  //Day 5
+  let temperatureMaxDay5 = Math.round(response.data.list[32].main.temp_max);
+  let maxDay5 = document.querySelector("#max-day-5");
+  maxDay5.innerHTML = `↑${temperatureMaxDay5}º`;
+  let temperatureMinDay5 = Math.round(response.data.list[32].main.feels_like);
+  let minDay5 = document.querySelector("#min-day-5");
+  minDay5.innerHTML = `↓${temperatureMinDay5}º`;
+  //Day 6
+  let temperatureMaxDay6 = Math.round(response.data.list[39].main.temp_max);
+  let maxDay6 = document.querySelector("#max-day-6");
+  maxDay6.innerHTML = `↑${temperatureMaxDay6}º`;
+  let temperatureMinDay6 = Math.round(response.data.list[39].main.feels_like);
+  let minDay6 = document.querySelector("#min-day-6");
+  minDay6.innerHTML = `↓${temperatureMinDay6}º`;
+}
 
 function retrievePosition(position) {
   let apiKey = "940c8ed5f2cc9111c0cd74ba210060b2";
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
   let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+  let apiUrlForecast = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
   axios.get(url).then(changeData);
+  axios.get(`${apiUrlForecast}&appid=${apiKey}`).then(ForecastData);
 }
 
 navigator.geolocation.getCurrentPosition(retrievePosition);
