@@ -4,13 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather App</title>
-    <link rel="stylesheet" href="src/styles.css" />
+
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
       integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="src/styles.css" />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
   <body>
@@ -52,63 +53,73 @@
             <ul>
               <li><h1>CITY</h1></li>
               <li>September 25, 2020</li>
-              <li>☀️</li>
-              <li>SUNNY</li>
             </ul>
           </div>
           <div class="col-4">
             <ul>
-              <li>Precipitaction:</li>
-              <li>Humidity:</li>
-              <li>Wind:</li>
+              <li class="big-emoji">☀️</li>
+              <li class="temperature">23º</li>
             </ul>
           </div>
           <div class="col-4">
+            <ul class="parameters">
+              <li>Precipitation: 0%</li>
+              <li>Humidity: 40%</li>
+              <li>Wind: 29</li>
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
             <ul>
-              <li>23º</li>
-              <li>Cº | Fº</li>
+              <li>Sunny</li>
+            </ul>
+          </div>
+          <div class="col-6">
+            <ul>
+              <li class="units">Cº | Fº</li>
             </ul>
           </div>
         </div>
         <hr />
         <div class="row">
           <div class="col-2">
-            <ul>
+            <ul class="forecast">
               <li>Day 1</li>
               <li>☀️</li>
               <li>16º</li>
             </ul>
           </div>
           <div class="col-2">
-            <ul>
+            <ul class="forecast">
               <li>Day 1</li>
               <li>☀️</li>
               <li>16º</li>
             </ul>
           </div>
           <div class="col-2">
-            <ul>
+            <ul class="forecast">
               <li>Day 1</li>
               <li>☀️</li>
               <li>16º</li>
             </ul>
           </div>
           <div class="col-2">
-            <ul>
+            <ul class="forecast">
               <li>Day 1</li>
               <li>☀️</li>
               <li>16º</li>
             </ul>
           </div>
           <div class="col-2">
-            <ul>
+            <ul class="forecast">
               <li>Day 1</li>
               <li>☀️</li>
               <li>16º</li>
             </ul>
           </div>
           <div class="col-2">
-            <ul>
+            <ul class="forecast">
               <li>Day 1</li>
               <li>☀️</li>
               <li>16º</li>
