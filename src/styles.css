@@ -1,10 +1,52 @@
+body {
+  font-family: arial, sans-serif;
+  font-size: 16px;
+}
 .weather-app-wrapper {
-  max-width: 700px;
+  max-width: 650px;
   margin: 30px auto;
   padding: 20px;
   border: 1px solid #dadde1;
   border-radius: 5px;
   background-color: white;
+}
+h1 {
+  font-size: 24px;
+  font-weight: 100;
+  line-height: 28px;
+  margin-bottom: 5px;
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  font-weight: 100;
+}
+.temperature {
+  font-size: 50px;
+  text-align: center;
+}
+.units {
+  text-align: right;
+  margin-right: 5px;
+}
+.big-emoji {
+  text-align: center;
+  font-size: 50px;
+  margin-top: 5px;
+}
+.forecast {
+  text-align: center;
+  font-size: 18px;
+}
+.parameters {
+  text-align: right;
 }
 footer {
   text-align: center;
