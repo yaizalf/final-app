@@ -166,7 +166,7 @@ function retrievePosition(position) {
   let apiKey = "940c8ed5f2cc9111c0cd74ba210060b2";
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
-  let url = `https://api.c.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+  let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
   axios.get(url).then(changeData);
 }
 
