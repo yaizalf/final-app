@@ -65,7 +65,7 @@ function newCity(event) {
     humidity.innerHTML = `${response.data.main.humidity}%`;
 
     let description = document.querySelector("#description");
-    description.innerHTML = `${response.data.weather[0].description}`;
+    description.innerHTML = `${response.data.weather[0].main}`;
 
     let windSpeed = document.querySelector("#wind");
     windSpeed.innerHTML = `${response.data.wind.speed} m/s`;
@@ -76,9 +76,12 @@ function newCity(event) {
     let min_temp = Math.round(response.data.main.temp_min);
     let min = document.querySelector("#min");
     min.innerHTML = `↓${min_temp}`;
-
-    //let icon = document.querySelector("#big-emoji");
-    //icon.innerHTML = `${response.data.weather[0].icon}`;
+    //Icon
+    let icon = document.querySelector("#icon");
+    icon.setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    );
   }
   function ForecastData(response) {
     //Today
@@ -88,6 +91,11 @@ function newCity(event) {
     let temperatureMinToday = Math.round(response.data.list[0].main.feels_like);
     let minToday = document.querySelector("#forecast-min-today");
     minToday.innerHTML = `↓${temperatureMinToday}º`;
+    let iconDay1 = document.querySelector("#icon-day-1");
+    iconDay1.setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${response.data.list[0].weather[0].icon}@2x.png`
+    );
     //Tomorrow
     let temperatureMaxTomorrow = Math.round(
       response.data.list[8].main.temp_max
@@ -100,7 +108,11 @@ function newCity(event) {
     );
     let minTomorrow = document.querySelector("#min-tomorrow");
     minTomorrow.innerHTML = `↓${temperatureMinTomorrow}º`;
-
+    let iconDay2 = document.querySelector("#icon-day-2");
+    iconDay2.setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${response.data.list[8].weather[0].icon}@2x.png`
+    );
     // Day 3
     let temperatureMaxDay3 = Math.round(response.data.list[16].main.temp_max);
     let maxDay3 = document.querySelector("#max-day-3");
@@ -108,7 +120,11 @@ function newCity(event) {
     let temperatureMinDay3 = Math.round(response.data.list[16].main.feels_like);
     let minDay3 = document.querySelector("#min-day-3");
     minDay3.innerHTML = `↓${temperatureMinDay3}º`;
-
+    let iconDay3 = document.querySelector("#icon-day-3");
+    iconDay3.setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${response.data.list[16].weather[0].icon}@2x.png`
+    );
     //Day 4
     let temperatureMaxDay4 = Math.round(response.data.list[24].main.temp_max);
     let maxDay4 = document.querySelector("#max-day-4");
@@ -116,6 +132,11 @@ function newCity(event) {
     let temperatureMinDay4 = Math.round(response.data.list[24].main.feels_like);
     let minDay4 = document.querySelector("#min-day-4");
     minDay4.innerHTML = `↓${temperatureMinDay4}º`;
+    let iconDay4 = document.querySelector("#icon-day-4");
+    iconDay4.setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${response.data.list[24].weather[0].icon}@2x.png`
+    );
     //Day 5
     let temperatureMaxDay5 = Math.round(response.data.list[32].main.temp_max);
     let maxDay5 = document.querySelector("#max-day-5");
@@ -123,6 +144,11 @@ function newCity(event) {
     let temperatureMinDay5 = Math.round(response.data.list[32].main.feels_like);
     let minDay5 = document.querySelector("#min-day-5");
     minDay5.innerHTML = `↓${temperatureMinDay5}º`;
+    let iconDay5 = document.querySelector("#icon-day-5");
+    iconDay5.setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${response.data.list[32].weather[0].icon}@2x.png`
+    );
     //Day 6
     let temperatureMaxDay6 = Math.round(response.data.list[39].main.temp_max);
     let maxDay6 = document.querySelector("#max-day-6");
@@ -130,6 +156,11 @@ function newCity(event) {
     let temperatureMinDay6 = Math.round(response.data.list[39].main.feels_like);
     let minDay6 = document.querySelector("#min-day-6");
     minDay6.innerHTML = `↓${temperatureMinDay6}º`;
+    let iconDay6 = document.querySelector("#icon-day-6");
+    iconDay6.setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${response.data.list[39].weather[0].icon}@2x.png`
+    );
   }
   axios.get(`${apiUrl}&appid=${apiKey}`).then(newData);
   axios.get(`${apiUrlForecast}&appid=${apiKey}`).then(ForecastData);
@@ -148,8 +179,7 @@ function changeData(response) {
   humidity.innerHTML = `${response.data.main.humidity}%`;
 
   let description = document.querySelector("#description");
-  description.innerHTML = `${response.data.weather[0].description}`;
-  console.log(response);
+  description.innerHTML = `${response.data.weather[0].main}`;
 
   let windSpeed = document.querySelector("#wind");
   windSpeed.innerHTML = `${response.data.wind.speed} m/s`;
@@ -160,8 +190,14 @@ function changeData(response) {
   let min_temp = Math.round(response.data.main.temp_min);
   let min = document.querySelector("#min");
   min.innerHTML = `↓${min_temp}`;
+  let icon = document.querySelector("#icon");
+  icon.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
 }
 function ForecastData(response) {
+  console.log(response);
   //Today
   let temperatureMaxToday = Math.round(response.data.list[0].main.temp_max);
   let maxToday = document.querySelector("#forecast-max-today");
@@ -169,6 +205,11 @@ function ForecastData(response) {
   let temperatureMinToday = Math.round(response.data.list[0].main.feels_like);
   let minToday = document.querySelector("#forecast-min-today");
   minToday.innerHTML = `↓${temperatureMinToday}º`;
+  let iconDay1 = document.querySelector("#icon-day-1");
+  iconDay1.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.list[0].weather[0].icon}@2x.png`
+  );
   //Tomorrow
   let temperatureMaxTomorrow = Math.round(response.data.list[8].main.temp_max);
   let maxTomorrow = document.querySelector("#max-tomorrow");
@@ -179,6 +220,11 @@ function ForecastData(response) {
   );
   let minTomorrow = document.querySelector("#min-tomorrow");
   minTomorrow.innerHTML = `↓${temperatureMinTomorrow}º`;
+  let iconDay2 = document.querySelector("#icon-day-2");
+  iconDay2.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.list[8].weather[0].icon}@2x.png`
+  );
   // Day 3
   let temperatureMaxDay3 = Math.round(response.data.list[16].main.temp_max);
   let maxDay3 = document.querySelector("#max-day-3");
@@ -186,6 +232,11 @@ function ForecastData(response) {
   let temperatureMinDay3 = Math.round(response.data.list[16].main.feels_like);
   let minDay3 = document.querySelector("#min-day-3");
   minDay3.innerHTML = `↓${temperatureMinDay3}º`;
+  let iconDay3 = document.querySelector("#icon-day-3");
+  iconDay3.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.list[16].weather[0].icon}@2x.png`
+  );
 
   //Day 4
   let temperatureMaxDay4 = Math.round(response.data.list[24].main.temp_max);
@@ -194,6 +245,11 @@ function ForecastData(response) {
   let temperatureMinDay4 = Math.round(response.data.list[24].main.feels_like);
   let minDay4 = document.querySelector("#min-day-4");
   minDay4.innerHTML = `↓${temperatureMinDay4}º`;
+  let iconDay4 = document.querySelector("#icon-day-4");
+  iconDay4.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.list[24].weather[0].icon}@2x.png`
+  );
   //Day 5
   let temperatureMaxDay5 = Math.round(response.data.list[32].main.temp_max);
   let maxDay5 = document.querySelector("#max-day-5");
@@ -201,6 +257,11 @@ function ForecastData(response) {
   let temperatureMinDay5 = Math.round(response.data.list[32].main.feels_like);
   let minDay5 = document.querySelector("#min-day-5");
   minDay5.innerHTML = `↓${temperatureMinDay5}º`;
+  let iconDay5 = document.querySelector("#icon-day-5");
+  iconDay5.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.list[32].weather[0].icon}@2x.png`
+  );
   //Day 6
   let temperatureMaxDay6 = Math.round(response.data.list[39].main.temp_max);
   let maxDay6 = document.querySelector("#max-day-6");
@@ -208,6 +269,11 @@ function ForecastData(response) {
   let temperatureMinDay6 = Math.round(response.data.list[39].main.feels_like);
   let minDay6 = document.querySelector("#min-day-6");
   minDay6.innerHTML = `↓${temperatureMinDay6}º`;
+  let iconDay6 = document.querySelector("#icon-day-6");
+  iconDay6.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.list[39].weather[0].icon}@2x.png`
+  );
 }
 
 function retrievePosition(position) {
@@ -221,10 +287,6 @@ function retrievePosition(position) {
 }
 
 navigator.geolocation.getCurrentPosition(retrievePosition);
-
-// Forecast for user search
-
-// Forecast for current location
 
 // Celsius - Fahrenheit - IT WILL HAVE TO CHANGE!
 let cels = 16;
