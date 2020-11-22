@@ -82,6 +82,7 @@ function newCity(event) {
       "src",
       `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
     );
+    cels = response.data.main.temp;
   }
   function ForecastData(response) {
     //Today
@@ -288,22 +289,26 @@ function retrievePosition(position) {
 
 navigator.geolocation.getCurrentPosition(retrievePosition);
 
-// Celsius - Fahrenheit - IT WILL HAVE TO CHANGE!
-let cels = 16;
-let fahr = 60;
+// Celsius - Fahrenheit
+let cels = null;
 
 function celsTemp(event) {
   event.preventDefault();
   let h2 = document.querySelector("#temperature");
-  h2.innerHTML = `${cels}º`;
+  h2.innerHTML = `${Math.round(cels)}º`;
+  fahrenheitLink.classList.remove("active");
+  celsiusLink.classList.add("active");
 }
 let celsiusLink = document.querySelector("#cels-link");
 celsiusLink.addEventListener("click", celsTemp);
 
-function fahrTemp(event) {
+function displayFahrTemp(event) {
   event.preventDefault();
+  let fahrTemperature = (cels * 9 / 5) + 32;
   let h2 = document.querySelector("#temperature");
-  h2.innerHTML = `${fahr}º`;
+  h2.innerHTML = `${Math.round(fahrTemperature)}º`;
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
 }
 let fahrenheitLink = document.querySelector("#fahr-link");
-fahrenheitLink.addEventListener("click", fahrTemp);
+fahrenheitLink.addEventListener("click", displayFahrTemp);
